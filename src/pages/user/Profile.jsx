@@ -19,6 +19,7 @@ const Profile = () => {
 
     const { userInfo } = useSelector((state)=>state.auth);
     const [image, setImage] = useState(userInfo.avatar);
+    const [file, setFile] = useState();
     const inputFileRef = createRef(null);
     // const [newImage,setNewImage]=useState(null);
 
@@ -62,7 +63,20 @@ const Profile = () => {
         fetchData();
       }, []); 
 
-
+    useEffect(() => {
+        const setAvatar = async () => {
+            try{
+                alert(file.name)
+                const formData = new FormData();
+                formData.append('file', file);
+                axios.post('/api/users/avatar', formData);
+                console.log(response);
+              } catch (error) {
+                console.log(error);
+              }
+        };
+        setAvatar();
+    }, [file]);
     const handleUsername = (e) => {
         e.preventDefault();
         setUsername(e.target.value);
@@ -94,10 +108,9 @@ const Profile = () => {
     }
   
     const handleOnChange = async(event) => {
-  
-      const file = event.target.files[0];
-      
-      const reader = new FileReader();
+
+      setFile(event.target.files[0])
+      /*const reader = new FileReader();
   
       reader.onload = () => {
         setImage(reader.result);
@@ -106,7 +119,7 @@ const Profile = () => {
       if (file) {
         reader.readAsDataURL(file);
       }
-    //   setNewImage(file);
+    //   setNewImage(file);*/
       setUpdate(true);
     };
 
