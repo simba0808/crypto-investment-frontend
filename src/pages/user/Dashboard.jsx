@@ -102,51 +102,44 @@ const Dashboard = () => {
             <div>
                 <div className='w-full '>
                     {
-                    userInfo.avatar?<Node avatar={userInfo.avatar} username={userInfo.username} email={userInfo.email} active={true}/>:
-                        <Node avatar={Avatar00} username={userInfo.username} email={userInfo.email} active={true} />
+                        <Node avatar={userInfo.avatar} username={userInfo.username} email={userInfo.email} active={true}/>
                     }
                 </div>
                 <div className=' grid grid-cols-2'>
                     <div className=' col-span-1'>
                         { nodes.node1.email?
-                            (nodes.node1.avatar?
-                            <Node avatar={nodes.node1.avatar} username={nodes.node1.username} email={nodes.node1.email} active={nodes.node1}/>:<Node avatar={Avatar00} username={nodes.node1.username} email={nodes.node1.email} active={nodes.node1}/>
-                            ):<Node avatar={Avatar00} active={false} /> }
+                            <Node avatar={nodes.node1.avatar} username={nodes.node1.username} email={nodes.node1.email} active={nodes.node1}/>:<Node avatar={nodes.node1.avatar} active={false} /> 
+                        }
                     </div>
                     <div className=' col-span-1'>
                         { nodes.node2.email?
-                            (nodes.node2.avatar?
-                            <Node avatar={nodes.node2.avatar} username={nodes.node2.username} email={nodes.node2.email} active={nodes.node2}/>:<Node avatar={Avatar00} username={nodes.node2.username} email={nodes.node2.email} active={nodes.node2}/>
-                            ):<Node avatar={Avatar00} active={false} /> }
+                            <Node avatar={nodes.node2.avatar} username={nodes.node2.username} email={nodes.node2.email} active={nodes.node2}/>:<Node avatar={nodes.node2.avatar} active={false} />
+                        }
                     </div>
                 </div>
                 <div className='flex'>
                     <div className='w-1/2 grid grid-cols-2'>
                         <div className=' col-span-1 ml-4'>
-                        { nodes.node11.email?
-                            (nodes.node11.avatar?
-                            <Node avatar={nodes.node11.avatar} username={nodes.node11.username} email={nodes.node11.email} active={nodes.node11}/>:<Node avatar={Avatar00} username={nodes.node11.username} email={nodes.node11.email} active={nodes.node11}/>
-                            ):<Node avatar={Avatar00} active={false} /> }
+                            { nodes.node11.email?
+                                <Node avatar={nodes.node11.avatar} username={nodes.node11.username} email={nodes.node11.email} active={nodes.node11}/>:<Node avatar={nodes.node11.avatar} active={false} /> 
+                            }
                         </div>
                         <div className=' col-span-1 mr-4'>
                         { nodes.node12.email?
-                            (nodes.node12.avatar?
-                            <Node avatar={nodes.node12.avatar} username={nodes.node12.username} email={nodes.node12.email} active={nodes.node12}/>:<Node avatar={Avatar00} username={nodes.node12.username} email={nodes.node12.email} active={nodes.node12}/>
-                            ):<Node avatar={Avatar00} active={false} /> }
+                            <Node avatar={nodes.node12.avatar} username={nodes.node12.username} email={nodes.node12.email} active={nodes.node12}/>:<Node avatar={nodes.node12.avatar} active={false} /> 
+                        }
                         </div>
                     </div>
                     <div className=' w-1/2 grid grid-cols-2'>
                         <div className=' col-span-1 ml-4'>
                         { nodes.node21.email?
-                            (nodes.node21.avatar?
-                            <Node avatar={nodes.node21.avatar} username={nodes.node21.username} email={nodes.node21.email} active={nodes.node21}/>:<Node avatar={Avatar00} username={nodes.node21.username} email={nodes.node21.email} active={nodes.node21}/>
-                            ):<Node avatar={Avatar00} active={false} /> }
+                            <Node avatar={nodes.node21.avatar} username={nodes.node21.username} email={nodes.node21.email} active={nodes.node21}/>:<Node avatar={nodes.node21.avatar} active={false} /> 
+                        }
                         </div>
                         <div className=' col-span-1 mr-4'>
                         { nodes.node22.email?
-                            (nodes.node22.avatar?
-                            <Node avatar={nodes.node22.avatar} username={nodes.node22.username} email={nodes.node22.email} active={nodes.node22}/>:<Node avatar={Avatar00} username={nodes.node22.username} email={nodes.node22.email} active={nodes.node22}/>
-                            ):<Node avatar={Avatar00} active={false} /> }
+                            <Node avatar={nodes.node22.avatar} username={nodes.node22.username} email={nodes.node22.email} active={nodes.node22}/>:<Node avatar={nodes.node22.avatar} active={false} /> 
+                        }
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaWallet } from 'react-icons/fa'
 import { SiLevelsdotfyi } from 'react-icons/si'
@@ -13,9 +13,11 @@ import Avatar from '../../assets/avatar12.png'
 
 import { useLogoutMutation } from '../../slices/usersApiSlice';
 import { logout } from '../../slices/authSlice';
+import axios from 'axios'
 const Sidebar = () => {
 
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [avatar, setAvatar] = useState();
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,6 +34,16 @@ const Sidebar = () => {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    const fetchAvatar = async () => {
+      const response = await axios.get(`/api/users/avatar/${userInfo.avatar}`);
+      setAvatar(response.data);
+    }
+    if(userInfo.avatar != '') {
+      fetchAvatar();
+    }
+  }, [userInfo.avatar])
 
   const Menus = [
     { title: 'Network', path: '/dashboard', src: <TbBinaryTree /> },
@@ -58,7 +70,7 @@ const Sidebar = () => {
                         className="w-28 h-full rounded-full max-w-sm mx-auto lg:mx-0 opacity-70 blur-lg bg-gradient-to-r from-yellow-400 via-pink-500 to-red-600">
                     </div>
                 </div>
-                {userInfo.avatar?<img  src={userInfo.avatar}  className="relative w-28 h-28 ml-auto mr-auto rounded-full opacity-95 hover:cursor-pointer hover:scale-110 z-10" alt="Avatar"/>:<img  src={Avatar}  className="relative w-28 h-28 ml-auto mr-auto rounded-full opacity-95 hover:cursor-pointer hover:scale-110 z-10" alt="Avatar"/>}
+                {avatar?<img  src={`data: image/jpeg;base64, ${avatar}`}  className="relative w-28 h-28 ml-auto mr-auto rounded-full opacity-95 hover:cursor-pointer hover:scale-110 z-10" alt="Avatar"/>:<img  src={Avatar}  className="relative w-28 h-28 ml-auto mr-auto rounded-full opacity-95 hover:cursor-pointer hover:scale-110 z-10" alt="Avatar"/>}
                 {/* <img  src={Avatar}  className="relative w-28 ml-auto mr-auto rounded-full shadow-sm shadow-pink-800" alt="Avatar"/> */}
 
             </div>
