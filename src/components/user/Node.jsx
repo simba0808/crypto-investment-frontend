@@ -8,6 +8,7 @@ const Node = ({avatar, username="", email="", active=false}) => {
     const [imageAvatar, setImageAvatar] = useState();
     useEffect(() => {
         const updateAvatar = async () => {
+            console.log('>>>'+avatar, imageAvatar)
             const response = await axios.get(`/api/users/avatar/${avatar}`);
             setImageAvatar(response.data);
         };
@@ -27,7 +28,7 @@ const Node = ({avatar, username="", email="", active=false}) => {
                         </div>
                     </div>
                     <Tooltip content={active?(username+'\n : '+email): "Invite your friend!"} placement="right" >
-                        <img src={`${avatar ? `data: image/jpeg;base64, ${imageAvatar}` : `${Avatar}`}`}
+                        <img src={`${(imageAvatar && imageAvatar !== undefined) ? `data: image/jpeg;base64, ${imageAvatar}` : `${Avatar}`}`}
                             className={`relative object-cover shrink-0 w-20  h-20 sm:w-28 sm:h-28 rounded-full border-4 border-gray-800 shadow-md shadow-black hover:scale-105 hover:cursor-pointer ${!active?"blur-[5px]":""}`}/>
                     </Tooltip>
                 </div>
