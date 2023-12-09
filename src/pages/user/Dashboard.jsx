@@ -91,7 +91,7 @@ const Dashboard = () => {
 
     dispatch(setPercentage(percentage));
     
-    console.log('<><><><><'+percentage+percentage);
+    console.log(percentage);
     return (
     <div className='dark:text-white'>
         <div className='sm:mt-10 mt-16'>

@@ -89,18 +89,21 @@ const Profile = () => {
                 newPassword: newPassword,
                 avatar: userInfo.avatar,
             }).unwrap();
+            console.log(res.data)
             const updatedProfile = Object.assign({}, userInfo, { username: username, referral_link: referral_link});
             dispatch(setCredentials(updatedProfile));
+
+            if(isPreview) {
+                toast.success('Profile updated successfully', { autoClose: 3000, hideProgressBar: true, pauseOnHover: false, closeOnClick: true, theme: "dark", });
+                        setPassword("");
+                        setNewPassword("");
+                        setConfirmPassword("");
+                        setUpdate(false);
+                        setIsPreview(false);
+            }
         };
         updateProfileWithAvatar();
-        if(isPreview) {
-            toast.success('Profile updated successfully', { autoClose: 3000, hideProgressBar: true, pauseOnHover: false, closeOnClick: true, theme: "dark", });
-                    setPassword("");
-                    setNewPassword("");
-                    setConfirmPassword("");
-                    setUpdate(false);
-                    setIsPreview(false);
-        }
+        
     }, [avatar]);
 
     const uploadAvatar = async () => {
