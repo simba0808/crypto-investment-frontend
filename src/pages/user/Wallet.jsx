@@ -89,12 +89,15 @@ const Wallet = () => {
  
     const handleSubmitDeposit = () => {
         axios
-        .put("/api/balance/deposit", {email, dAmount})
+        .put("/api/balance/invoice", {email, dAmount})
         .then( res => {
             console.log(res.data);
-            dispatch(setCredentials({ ...res.data }));
-            toast.success("Successful Deposit!", {autoClose: 2000, pauseOnHover: false, closeOnClick: true, theme: "dark",});
-            setDamount("");
+            const invoice_id = res.data.invoice_id;
+            const payment_id = res.data.payment_id;
+            window.location.assign('https://nowpayments.io/payment/?iid=' + invoice_id + '&paymentId=' + payment_id);
+            //dispatch(setCredentials({ ...res.data }));
+            //toast.success("Successful Deposit!", {autoClose: 2000, pauseOnHover: false, closeOnClick: true, theme: "dark",});
+            //setDamount("");
         })
         .catch(err => {
             // toast.error(res.data.message, {autoClose: 1000, hideProgressBar: true, pauseOnHover: false, closeOnClick: true, theme: "dark",});
