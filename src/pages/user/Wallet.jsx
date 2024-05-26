@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from '../../config/Axios';
 import { Tooltip } from '@material-tailwind/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCredentials } from '../../slices/authSlice';
@@ -48,7 +48,7 @@ const Wallet = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('/api/users/');
+            const response = await Axios.get('/api/users/');
             console.log(response.data);
             dispatch(setCredentials({ ...response.data }));
             
@@ -88,7 +88,7 @@ const Wallet = () => {
     }
  
     const handleSubmitDeposit = () => {
-        axios
+        Axios
         .put("/api/balance/invoice", {email, dAmount})
         .then( res => {
             console.log(res.data);
@@ -106,7 +106,7 @@ const Wallet = () => {
     }
 
     const handleSubmitWithdraw = () => {
-        axios
+        Axios
         .put("/api/balance/withdraw", {email, wAmount})
         .then( res => {
             dispatch(setCredentials({ ...res.data }));

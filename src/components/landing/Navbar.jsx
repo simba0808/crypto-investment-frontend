@@ -7,7 +7,7 @@ import { logout, setCredentials, setNodes } from '../../slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import axios from 'axios';
+import Axios from '../../config/Axios';
 const Navbar = () => {
 
   const [toggle, setToggle] = useState(false);
@@ -19,13 +19,13 @@ const Navbar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/api/users/');
+        const response = await Axios.get('/api/users/');
         dispatch(setCredentials({ ...response.data }));
 
         const email = response.data.email;
         console.log('mail : '+email);
 
-        await axios
+        await Axios
         .post("/api/tree", {email})
         .then( res => {
             console.log(userInfo.state);

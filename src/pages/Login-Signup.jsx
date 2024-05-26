@@ -12,7 +12,7 @@ import { useRegisterMutation } from '../slices/usersApiSlice';
 import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 
-import axios from 'axios';
+import Axios from '../config/Axios';
 const Login_Signup = () => {
 	const { isSidebarOpen, isSignupOpen,  closeSidebar, openSignup, openSidebar } = useGlobalContext();
 
@@ -124,7 +124,7 @@ const Login_Signup = () => {
 	const handleSendCodeClick = () => {
 		if(validateEmail(email)) {
 
-			axios
+			Axios
 			.post("/api/users/mail", {email})
 			.then( res => {
 				setNote(`Sent verification code to ${email}`);
@@ -191,7 +191,7 @@ const Login_Signup = () => {
 	const handleForgotSendCodeClick = () => {
 		if(validateEmail(forgot_email)) {
 
-			axios
+			Axios
 			.post("/api/users/remail", {forgot_email})
 			.then( res => {
 				setForgotNote(`Sent reset password code to ${forgot_email}`);
@@ -241,7 +241,7 @@ const Login_Signup = () => {
 		console.log('Forgot Email : '+forgot_email+', Reset Code : '+forgot_code+', New Password : '+forgot_password+', Confirm Password : '+forgot_confirm_password);
 
 		try {
-			await axios
+			await Axios
 			.post("/api/users/password", {forgot_email,forgot_code,forgot_password})
 			.then( res => {
 				navigate('/');

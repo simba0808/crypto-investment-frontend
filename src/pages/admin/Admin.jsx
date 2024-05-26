@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setCredentials, setNodes } from '../../slices/authSlice';
-import axios from 'axios';
+import Axios from '../../config/Axios';
 
 import { BalanceContext } from '../../context/balanceContext';
 
@@ -14,7 +14,7 @@ const Admin = () => {
     const {dispatch} = useContext(BalanceContext);
 
     useEffect(() => {
-        axios
+        Axios
         .get("/api/users/dashboard")
         .then( res => {
             setDashboardInfo(res.data)

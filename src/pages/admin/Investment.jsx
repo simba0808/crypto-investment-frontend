@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from '../../config/Axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
@@ -28,7 +28,7 @@ const Investment = () => {
     };
 
     useEffect(() => {
-        axios
+        Axios
         .get("/api/history/progress")
         .then( res => {
             setProgressShow(res.data.progressShow)
@@ -41,7 +41,7 @@ const Investment = () => {
       }, []);
 
       useEffect(() => {
-        axios
+        Axios
         .get("/api/users/allusers")
         .then( res => {
             dispatch(setUsers({ ...res.data }));
@@ -54,7 +54,7 @@ const Investment = () => {
       }, []);
 
       useEffect(() => {
-        axios
+        Axios
         .get("/api/history/deposit")
         .then( res => {
             console.log("History founded Successfully!", res.data);

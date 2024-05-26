@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { setCredentials, logout } from '../slices/authSlice';
 
-import axios from 'axios';
+import Axios from '../config/Axios';
 
 const PrivateRoute = () => {
   
@@ -15,7 +15,7 @@ const PrivateRoute = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/api/users/');
+        const response = await Axios.get('/api/users/');
         dispatch(setCredentials({ ...response.data }));
 
         console.log('mail : '+userInfo.email);

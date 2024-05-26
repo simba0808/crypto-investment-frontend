@@ -13,7 +13,7 @@ import Avatar from '../../assets/avatar12.png'
 
 import { useLogoutMutation } from '../../slices/usersApiSlice';
 import { logout } from '../../slices/authSlice';
-import axios from 'axios'
+import Axios from '../../config/Axios'
 const Sidebar = () => {
 
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -37,7 +37,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     const fetchAvatar = async () => {
-      const response = await axios.get(`/api/users/avatar/${userInfo.avatar}`);
+      const response = await Axios.get(`/api/users/avatar/${userInfo.avatar}`);
       setAvatar(response.data);
     }
     if(userInfo.avatar != '') {

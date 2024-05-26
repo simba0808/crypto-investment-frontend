@@ -12,7 +12,7 @@ import { setCredentials } from '../../slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../slices/authSlice';
 import { useLogoutMutation } from '../../slices/usersApiSlice';
-import axios from 'axios';
+import Axios from '../../config/Axios';
 
 
 const Profile = () => {
@@ -54,7 +54,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('/api/users/');
+                const response = await Axios.get('/api/users/');
                 //console.log(response.data);
                 dispatch(setCredentials({ ...response.data }));
 
@@ -70,7 +70,7 @@ const Profile = () => {
 
         const fetchImage = async () => {
             console.log('fetch:' + avatarID);
-            const response = await axios.get(`/api/users/avatar/${userInfo.avatar}`);
+            const response = await Axios.get(`/api/users/avatar/${userInfo.avatar}`);
             setAvatar(response.data);
         };
 
@@ -116,7 +116,7 @@ const Profile = () => {
             }
             formData.append('file', file);
             
-            const response = await axios.post('/api/users/upload', formData);
+            const response = await Axios.post('/api/users/upload', formData);
             if (response.data.id) {
                 const updatedProfile = Object.assign({}, userInfo, { avatar: response.data.id });
                 //console.log(updatedProfile);

@@ -8,8 +8,7 @@ import { setCredentials, setNodes, setPercentage } from '../../slices/authSlice'
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../slices/authSlice';
 import { useLogoutMutation } from '../../slices/usersApiSlice';
-import axios from 'axios';
-
+import Axios from '../../config/Axios';
 const Dashboard = () => {
     
     const { userInfo } = useSelector((state)=>state.auth);
@@ -46,7 +45,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('/api/users/');
+            const response = await Axios.get('/api/users/');
             console.log(response.data);
             dispatch(setCredentials({ ...response.data }));
             
@@ -60,7 +59,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         if(userInfo.state == 2) {
-            axios
+            Axios
             .post("/api/tree", {email, cycle})
             .then( res => {
                 console.log(res.data);
@@ -68,7 +67,7 @@ const Dashboard = () => {
                 const fullTree = Object.values(res.data).every(node => Object.keys(node).length > 0);
                 console.log("Tree Updated Successfully!", fullTree);
                 if(fullTree) {
-                    axios
+                    Axios
                     .post("/api/users/cycle", { email, cycle })
                     .then(res => {
                     console.log('res', res.data);

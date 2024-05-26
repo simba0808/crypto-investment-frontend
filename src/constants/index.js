@@ -1,5 +1,6 @@
 import { send, shield, star  } from "../assets";
 
+export const BASE_URL = "https://crypto-investment-backend-2bjr.onrender.com";
 
 export const features = [
   {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from '../../config/Axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
@@ -34,7 +34,7 @@ const Withdraw = () => {
     };
 
     useEffect(() => {
-        axios
+        Axios
         .get("/api/history/withdraw")
         .then( res => {
             console.log("Withdraw History founded Successfully!", res.data);
@@ -46,7 +46,7 @@ const Withdraw = () => {
       }, []);
 
     useEffect(() => {
-    axios
+    Axios
     .get("/api/history/balance")
     .then( res => {
         console.log("Balance History founded Successfully!", res.data.balanceHis);
@@ -58,7 +58,7 @@ const Withdraw = () => {
     }, []);
 
     useEffect(() => {
-        axios
+        Axios
         .get("/api/users/allusers")
         .then( res => {
             dispatch(setUsers({ ...res.data }));
@@ -77,7 +77,7 @@ const Withdraw = () => {
     }
 
     const handleApprove = (_id, email) => {
-        axios
+        Axios
         .put("/api/balance/approve", {_id, email})
         .then( res => {
             console.log("Fund is released Successfully!", res.data);

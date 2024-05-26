@@ -11,7 +11,7 @@ import { logout } from '../../slices/authSlice';
 import { useLogoutMutation } from '../../slices/usersApiSlice';
 import { setPercentage } from "../../slices/authSlice";
 
-import axios from "axios";
+import Axios from "../../config/Axios";
 const Cycle = () => {
 
     const { userInfo } = useSelector((state)=>state.auth);
@@ -39,7 +39,7 @@ const Cycle = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('/api/users/');
+            const response = await Axios.get('/api/users/');
             console.log(response.data);
             dispatch(setCredentials({ ...response.data }));
             
@@ -72,7 +72,7 @@ const Cycle = () => {
     const getStarted = () => {
         // e.preventDefault();
         dispatch(setPercentage(0));
-        axios
+        Axios
         .put("/api/balance/start", {email})
         .then( res => {
             // console.log(res.data);
@@ -87,7 +87,7 @@ const Cycle = () => {
     const handleRewards = () => {
         // e.preventDefault();
 
-        axios
+        Axios
         .put("/api/balance/rewards", {email})
         .then( res => {
             // console.log(res.data);

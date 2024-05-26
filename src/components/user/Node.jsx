@@ -1,6 +1,6 @@
 
 import { Tooltip } from "@material-tailwind/react";
-import axios from "axios";
+import Axios from "../../config/Axios";
 import { useEffect, useState } from "react";
 import Avatar from '../../assets/avatar12.png'
 
@@ -9,7 +9,7 @@ const Node = ({avatar, username="", email="", active=false}) => {
     useEffect(() => {
         const updateAvatar = async () => {
             console.log('>>>'+avatar, imageAvatar)
-            const response = await axios.get(`/api/users/avatar/${avatar}`);
+            const response = await Axios.get(`/api/users/avatar/${avatar}`);
             setImageAvatar(response.data);
         };
         if(avatar !== undefined && avatar !== '') {

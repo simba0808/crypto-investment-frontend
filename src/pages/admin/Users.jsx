@@ -22,8 +22,7 @@ import { setCredentials } from '../../slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../slices/authSlice';
 import { useLogoutMutation } from '../../slices/usersApiSlice';
-import axios from 'axios';
-
+import Axios from "../../config/Axios";
 import AdminNode from "../../components/user/AdminNode";
 
 
@@ -42,7 +41,7 @@ const Users = () => {
 
     const accept = () => {
         console.log('accepted');
-        axios
+        Axios
         .delete(`/api/users/delete/${_id}`)
         .then( res => {
             dispatch(setUsers({ ...res.data }));
@@ -56,7 +55,7 @@ const Users = () => {
 
     useEffect(() => {
 
-        axios
+        Axios
         .get("/api/users/allusers")
         .then( res => {
             dispatch(setUsers({ ...res.data }));
@@ -75,7 +74,7 @@ const Users = () => {
 
         const fetchData = async () => {
             try {
-              const response = await axios.post('/api/users/find', {email});
+              const response = await Axios.post('/api/users/find', {email});
               console.log('User : ',response.data[0].balance);
               setUserInfo(response.data[0]);
               setImage(response.data[0].avatar);
@@ -104,7 +103,7 @@ const Users = () => {
         const state = nodeInfo.state;
 
         if(state == 2) {
-            axios
+            Axios
             .post("/api/tree", {email, cycle})
             .then( res => {
                 
@@ -209,7 +208,7 @@ const Users = () => {
         if(isUpdate){
             try {
               console.log(userInfo._id, username, referral_link, newPassword);
-              axios
+              Axios
               .post("/api/users/force", {
                 _id : userInfo._id,
                 username: username,
@@ -218,7 +217,7 @@ const Users = () => {
                 avatar : image,
               })
               .then( res => {
-                  axios
+                 Axios
                   .get("/api/users/allusers")
                   .then( res => {
                       dispatch(setUsers({ ...res.data }));
